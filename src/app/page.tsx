@@ -6,11 +6,7 @@ import QueryInputCards from './components/QueryInputCards'
 const HomePage = () => {
   return (
     <>
-      <div>HomePage</div>
-      <Navbar />
       <QueryInputCards />
-
-      
     </>
   )
 }
