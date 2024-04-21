@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Card = ({ children, props='bg-gray-100' }) => {
+const Card = ({ children, className}) => {
   return (
-    <div className='{`${props} bg-gray-100 p-6 rounded-lg shadow-md`}'>{children}</div>
-  )
+    <div className='{`${className} bg-gray-100 p-6 rounded-lg shadow-md `}`'>{children}</div>
+  );
 }
 
 export default Card
