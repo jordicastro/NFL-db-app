@@ -1,25 +1,53 @@
 'use client';
 import React from 'react'
-import { useState } from 'react'
-
+import { useState, FormEvent, useEffect } from 'react'
+import Card from './Card'
+import AddGameForm from './queries/AddGame'
+import AddPlayerForm from './queries/AddPlayer'
+import ViewTeamPlayersForm from './queries/ViewTeamPlayers';
+import ViewPlayersPositionForm from './queries/ViewPlayersPosition';
+import ViewConferenceTeamsForm from './queries/ViewConferenceTeams';
+import ViewGamesByTeamForm from './queries/ViewGamesByTeam';
+import ViewGameByDate from './queries/ViewGameByDate';
 
 const QueryInputCards = () => {
-    const [gameName, setGameName] = useState('')
+
+//     useEffect(() => {
+//         console.log(selectedConference); // This will log the new value of selectedTeam whenever it changes
+//       }, [selectedConference]);
+
 return (
-    <div>
-            <div>QueryInputCards</div>
-            <form>
-                    <h3>1. Add a game to the Game table</h3>
-                    <input 
-                            type="text"
-                            placeholder="Game Name"
-                            value={gameName}
-                            onChange={(e) => {setGameName(e.target.value)}}
-                    />
-                    <button type="submit">Submit</button>
-            </form>
+        
+    <div className='flex flex-wrap justify-around'>
+        <Card className={'w-1/3 m-4 p-2'} >
+                <AddGameForm />
+        </Card>
+
+        <Card className={'w-1/3 m-4 p-2'}>
+                <AddPlayerForm />
+        </Card>
+
+        <Card className={'w-1/3 m-4 p-2'}>
+                <ViewTeamPlayersForm />
+        </Card>
+
+        <Card className={'w-1/3 m-4 p-2'}>
+                <ViewPlayersPositionForm />  
+        </Card>
+        
+        <Card className={'w-1/3 m-4 p-2'}>
+                <ViewConferenceTeamsForm />
+        </Card>
+
+        <Card className={'w-1/3 m-4 p-2'}>
+                <ViewGamesByTeamForm />
+        </Card>
+
+        <Card className={'w-1/3 m-4 p-2'}>
+                <ViewGameByDate />
+        </Card>
     </div>
-)
+);
 }
 
 export default QueryInputCards
