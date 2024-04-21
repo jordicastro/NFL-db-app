@@ -11,8 +11,8 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 type TableNames = "Game" | "Player" | "Team";
 
-const useSupabase = () => {
-  const getTable = async (tableName: string) => {
+const SupabaseService = () => {
+  const getTable = async (tableName: TableNames) => {
     const { data, error } = await supabase.from(tableName).select("*");
 
     if (error) {
@@ -48,4 +48,4 @@ const useSupabase = () => {
   return { getTable, addItem };
 };
 
-export default useSupabase;
+export default SupabaseService;
