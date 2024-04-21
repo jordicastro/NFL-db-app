@@ -1,6 +1,6 @@
 export interface Player {
-  id: number;
+  id?: number;
   name: string;
   position: string;
-  teamId: number;
+  teamID: number;
 }

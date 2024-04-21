@@ -1,5 +1,5 @@
 export interface Team {
-  id: number;
+  id?: number;
   location: string;
   conference: string;
   division: string;

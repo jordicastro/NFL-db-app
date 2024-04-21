@@ -2,6 +2,8 @@ import useSupabase from "@/app/hooks/useSupabase";
 import React from "react";
 import { useState, FormEvent } from "react";
 import { toast } from "react-toastify";
+import { Player } from "@/app/types/Player";
+import { Team } from "@/app/types/Team";
 // import { useRouter } from 'next/router'
 
 const addGame = async (gameName: string) => {
