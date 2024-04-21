@@ -1,12 +1,9 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import QueryInputCards from './components/QueryInputCards'
+import React from "react";
+import Navbar from "./components/Navbar";
+import QueryInputCards from "./components/QueryInputCards";
 // import { toast } from 'react-toastify' // successfully executed query, redirect to database page
 
-
-
 const HomePage = () => {
-
   // const handleFormSubmit = () => {}
 
   return (
@@ -14,6 +11,6 @@ const HomePage = () => {
       <QueryInputCards />
     </>
   );
-}
+};
 
-export default HomePage
+export default HomePage;

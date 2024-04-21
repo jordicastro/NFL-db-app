@@ -1,4 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
+import { Game } from "../types/Game";
+import { Player } from "../types/Player";
 
 //
 const SUPABASE_URL = "https://wjaeqzloacpfephrdkke.supabase.co";
@@ -8,7 +10,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 enum TableNames {
   GAME = "Game",
-  Player = "Player",
+  PLAYER = "Player",
   TEAM = "Team",
 }
 
@@ -22,7 +24,31 @@ const useSupabase = () => {
 
     return data;
   };
-  const addGame = async () => {};
+
+  const addItem = async (tableName: TableNames, item: Game | Player) => {
+    const { data, error } = await supabase.from(tableName).insert([item]);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
+  };
+
+  const viewPlayersFromTeam = async (teamId: number) => {
+    const { data, error } = await supabase
+      .from(TableNames.PLAYER)
+      .select("*")
+      .eq("teamId", teamId);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
+  };
+
+  return { getTable, addItem };
 };
 
 export default useSupabase;
