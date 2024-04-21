@@ -2,7 +2,7 @@ import React from 'react'
 
 const Database = () => {
   return (
-    <div>Database</div>
+    <div>Database displaying Games, Players, and Teams tables</div>
   )
 }
 
