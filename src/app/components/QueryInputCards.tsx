@@ -2,13 +2,13 @@
 import React from 'react'
 import { useState, FormEvent, useEffect } from 'react'
 import Card from './Card'
-import AddGameForm from './AddGameForm'
-import AddPlayerForm from './AddPlayerForm'
-import ViewTeamPlayersForm from './ViewTeamPlayersForm';
-import ViewPlayersPositionForm from './ViewPlayersPositionForm';
-import ViewConferenceTeamsForm from './ViewConferenceTeamsForm';
-import ViewGamesByTeamForm from './ViewGamesByTeamForm';
-import ViewGameByDate from './ViewGameByDate';
+import AddGameForm from './queries/AddGame'
+import AddPlayerForm from './queries/AddPlayer'
+import ViewTeamPlayersForm from './queries/ViewTeamPlayers';
+import ViewPlayersPositionForm from './queries/ViewPlayersPosition';
+import ViewConferenceTeamsForm from './queries/ViewConferenceTeams';
+import ViewGamesByTeamForm from './queries/ViewGamesByTeam';
+import ViewGameByDate from './queries/ViewGameByDate';
 
 const QueryInputCards = () => {
 
