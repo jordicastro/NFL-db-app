@@ -1,13 +1,28 @@
 import React from 'react'
 import { useState, FormEvent } from 'react'
 
+const ViewTeamPlayers = async (selectedTeam : string) => {
+    // query to get all players on a team
+    console.log(selectedTeam);
+
+    const res = await fetch (`/api/team/${selectedTeam}`);
+    const data = await res.json();
+    // pass this data into database page
+    console.log(data);
+    return;
+}
+
 const ViewTeamPlayersForm = () => {
     const [selectedTeam, setSelectedTeam] = useState('1'); // ['Team 1', 'Team 2', 'Team 3', 'Team 4']
 
     const onSelectedTeamChange = (e : FormEvent) => {
         const target = e.target as HTMLSelectElement;
+
         setSelectedTeam(target.value);
         // query to get all players on a team
+        ViewTeamPlayers(selectedTeam);
+        // toast
+        return;
     };
 
   return (

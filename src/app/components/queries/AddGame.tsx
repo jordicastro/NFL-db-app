@@ -1,10 +1,18 @@
 import React from 'react'
 import { useState, FormEvent } from 'react'
+import { toast } from 'react-toastify'
+// import { useRouter } from 'next/router'
 
-const addGame = (gameName : string) => {
+const addGame = async (gameName : string) => {
   console.log(`adding game: ${gameName}`)
-  // query to add game to game table
-  
+  const res = await fetch('/api/game', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({gameName}),
+  });
+  return;
 }
 
 const AddGameForm = () => {
@@ -13,7 +21,9 @@ const AddGameForm = () => {
   const onSubmitGame = (e : FormEvent) => {
     e.preventDefault();
     addGame(gameName);
-    // query to add game to game table
+    toast.success(`Game ${gameName} added!`);
+    // return redirect to ./database/game
+    return window.location.href = '/database/game';
   };
 
   return (
