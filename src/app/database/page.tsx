@@ -27,6 +27,7 @@ const Database = () => {
   return (
     <>
       Database displaying Games, Players, and Teams tables
+      
       {tables}
     </>
   )
