@@ -1,4 +1,4 @@
-import useSupabase from "@/app/hooks/useSupabase";
+import useSupabase from "@/app/services/supabaseService";
 import React from "react";
 import { useState, FormEvent } from "react";
 import { toast } from "react-toastify";
