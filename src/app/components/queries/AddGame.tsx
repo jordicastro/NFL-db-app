@@ -6,7 +6,9 @@ import { toast } from "react-toastify";
 import { Player } from "@/app/types/Player";
 import { Team } from "@/app/types/Team";
 import { Game } from "@/app/types/Game";
+import nicknameToIdMap from "@/app/util/TeamMap";
 // import { useRouter } from 'next/router'
+
 
 const gameNameOptions = [
   {value: "Game1", label: "Game 1"},
@@ -14,30 +16,39 @@ const gameNameOptions = [
   {value: "Game3", label: "Game 3"},
 ]
 
+const options = Object.keys(nicknameToIdMap).map((key) => ({
+  value: key,
+  label: key,
+}));
+
+
 
 const AddGameForm = () => {
   const { addItem } = SupabaseService();
 
-  const [awayGameName, setAwayGameName] = useState("");
-  const [homeGameName, setHomeGameName] = useState("");
+  const [awayTeamName, setAwayTeamName] = useState("");
+  const [homeTeamName, setHomeTeamName] = useState("");
   const [awayTeamScore, setAwayTeamScore] = useState('AwayTeamScore');
   const [homeTeamScore, setHomeTeamScore] = useState('HomeTeamScore');
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date())
   const [game, setGame] = useState<Game>();
 
 
   const onSubmitGame = async (e: FormEvent) => {
     e.preventDefault();
+    console.log(`Away Game Name: ${awayTeamName}`);
+    const awayGameID = nicknameToIdMap[awayTeamName];
+    const homeGameID = nicknameToIdMap[homeTeamName];
     setGame(
       {
-        awayGameName: parseInt(awayGameName),
-        homeGameName: parseInt(homeGameName),
+        awayTeamId: awayGameID,
+        homeTeamId: homeGameID,
         awayTeamScore: parseInt(awayTeamScore),
         homeTeamScore: parseInt(homeTeamScore),
         date: date,
       }
     );
-    console.log(`Game: ${game}`);
+    console.log(`Game: ${game?.date}`);
     // addItem("Game", {game})
     toast.success(`Game ${game} added!`);
     // return redirect to ./database/game
@@ -51,21 +62,21 @@ const AddGameForm = () => {
       </h3>
       <Select
         className="py-1 pl-2 text-lg"
-        options={gameNameOptions}
+        options={options}
         placeholder="Select Away Game"
         onChange={(e) => {
           if (e) {
-            setAwayGameName(e.value);
+            setAwayTeamName(e.value);
           }
         }}
       />
       <Select
         className="py-1 pl-2 text-lg"
-        options={gameNameOptions}
+        options={options}
         placeholder="Select Home Game"
         onChange={(e) => {
           if (e) {
-            setHomeGameName(e.value);
+            setHomeTeamName(e.value);
           }
         }}
       />
@@ -83,6 +94,19 @@ const AddGameForm = () => {
         value={homeTeamScore}
         onChange={(e) => setHomeTeamScore(e.target.value)}
         />
+      <input
+        className="block border border-grey-light w-full p-3 rounded mb-4"
+        type="date"
+        placeholder="Date"
+        value={date.toISOString().substring(0, 10)}
+        onChange={(e) => {
+          const newDate = new Date(e.target.value);
+          if (!isNaN(newDate.getTime())) {
+            setDate(newDate);
+          }
+        }}
+      />
+      
       <button
         className="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700"
         type="submit"
