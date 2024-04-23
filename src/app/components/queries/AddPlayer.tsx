@@ -36,14 +36,15 @@ const AddPlayerForm = () => {
     const [teamName, setTeamName] = useState('');
     const teamID = nicknameToIdMap[teamName];
 
-    const newPlayer = {
-        name: playerName,
-        position: position,
-        teamID: teamID,
-    }
-
     const onSubmitPlayer = (e : FormEvent) => {
         e.preventDefault();
+
+        const newPlayer = {
+          name: playerName,
+          position: position,
+          teamID: teamID,
+      };
+
         console.log(`Player Name: ${newPlayer.name}`);
         // query to add player to player table
         addItem('player', newPlayer as Player);
