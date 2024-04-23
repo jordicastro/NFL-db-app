@@ -1,29 +1,15 @@
 import React from 'react'
 import { useState, FormEvent } from 'react'
-
-const addPlayer = async (playerName : string) => {
-    console.log(`adding player: ${playerName}`)
-    // query to add player to player table
-    const res = fetch('/api/player', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({playerName}),
-    });
-
-    return;
-
-}
+import { toast } from 'react-toastify'
 
 const AddPlayerForm = () => {
     const [playerName, setPlayerName] = useState('');
 
     const onSubmitPlayer = (e : FormEvent) => {
         e.preventDefault();
-        addPlayer(playerName);
+        toast.success(`Player ${playerName} added!`);
         // query to add player to player table
-        return window.location.href = '/database/player';
+        //return window.location.href = '/database/player';
     };
 
   return (
