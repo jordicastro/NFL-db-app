@@ -27,7 +27,7 @@ const SupabaseService = () => {
     if (error) {
       throw new Error(error.message);
     }
-    console.log("Successfully added item");
+    console.log("[supabaseService] Successfully added item");
     return data;
   };
 

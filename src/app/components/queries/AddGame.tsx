@@ -3,18 +3,10 @@ import Select from "react-select";
 import React from "react";
 import { useState, FormEvent } from "react";
 import { toast } from "react-toastify";
-import { Player } from "@/app/types/Player";
-import { Team } from "@/app/types/Team";
 import { Game } from "@/app/types/Game";
 import nicknameToIdMap from "@/app/util/TeamMap";
 // import { useRouter } from 'next/router'
 
-
-const gameNameOptions = [
-  {value: "Game1", label: "Game 1"},
-  {value: "Game2", label: "Game 2"},
-  {value: "Game3", label: "Game 3"},
-]
 
 const options = Object.keys(nicknameToIdMap).map((key) => ({
   value: key,
@@ -59,7 +51,7 @@ const AddGameForm = () => {
       <Select
         className="py-1 pl-2 text-lg"
         options={options}
-        placeholder="Select Away Game"
+        placeholder="Select Away Team"
         onChange={(e) => {
           if (e) {
             setAwayTeamName(e.value);
@@ -69,7 +61,7 @@ const AddGameForm = () => {
       <Select
         className="py-1 pl-2 text-lg"
         options={options}
-        placeholder="Select Home Game"
+        placeholder="Select Home Team"
         onChange={(e) => {
           if (e) {
             setHomeTeamName(e.value);
