@@ -21,8 +21,6 @@ const options = Object.keys(nicknameToIdMap).map((key) => ({
   label: key,
 }));
 
-
-
 const AddGameForm = () => {
   const { addItem } = SupabaseService();
 
@@ -31,7 +29,6 @@ const AddGameForm = () => {
   const [awayTeamScore, setAwayTeamScore] = useState('AwayTeamScore');
   const [homeTeamScore, setHomeTeamScore] = useState('HomeTeamScore');
   const [date, setDate] = useState(new Date())
-  const [game, setGame] = useState<Game>();
 
 
   const onSubmitGame = async (e: FormEvent) => {
@@ -39,18 +36,17 @@ const AddGameForm = () => {
     console.log(`Away Game Name: ${awayTeamName}`);
     const awayGameID = nicknameToIdMap[awayTeamName];
     const homeGameID = nicknameToIdMap[homeTeamName];
-    setGame(
+    const newGame =
       {
         awayTeamId: awayGameID,
         homeTeamId: homeGameID,
         awayTeamScore: parseInt(awayTeamScore),
         homeTeamScore: parseInt(homeTeamScore),
         date: date,
-      }
-    );
-    console.log(`Game: ${game?.date}`);
-    // addItem("Game", {game})
-    toast.success(`Game ${game} added!`);
+      };
+    console.log(`Game: ${newGame?.date}`);
+    addItem("game", newGame as Game)
+    toast.success(`Game ${newGame} added!`);
     // return redirect to ./database/game
     // return (window.location.href = "/database/game");
   };
