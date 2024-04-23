@@ -1,39 +1,47 @@
 import React from 'react'
 import { useState, FormEvent } from 'react'
+import { toast } from 'react-toastify'
+import Select from 'react-select';
+import nicknameToIdMap from '@/app/util/TeamMap'
+import SupabaseService from '@/app/services/supabaseService';
 
-const ViewTeamPlayers = async (selectedTeam : string) => {
-    // query to get all players on a team
-    console.log(selectedTeam);
 
-    const res = await fetch (`/api/team/${selectedTeam}`);
-    const data = await res.json();
-    // pass this data into database page
-    console.log(data);
-    return;
-}
+
+const options = Object.keys(nicknameToIdMap).map((key) => ({
+  value: key,
+  label: key,
+}));
 
 const ViewTeamPlayersForm = () => {
-    const [selectedTeam, setSelectedTeam] = useState('1'); // ['Team 1', 'Team 2', 'Team 3', 'Team 4']
+    const { viewPlayersFromTeam } = SupabaseService();
+    const [teamName, setTeamName] = useState('1'); 
+    const teamID = nicknameToIdMap[teamName];
 
-    const onSelectedTeamChange = (e : FormEvent) => {
-        const target = e.target as HTMLSelectElement;
-
-        setSelectedTeam(target.value);
+    const onSubmitTeam = (e : FormEvent) => {
+        e.preventDefault();
+        console.log(`Selected Team: ${teamName}`)
         // query to get all players on a team
-        ViewTeamPlayers(selectedTeam);
+        const table = viewPlayersFromTeam(teamID);
         // toast
-        return;
+        toast.success(`Viewing all players on Team ${teamName}`);
+        // redirect to ./database/team/[teamID], passing in the table
+        return window.location.href = `/database/team/${teamID}`;
     };
 
   return (
-    <form>
+    <form onSubmit={onSubmitTeam}>
         <h3 className='text-2xl font-bold text-black-500'>3. View all the players on a team </h3>
-        <select className='py-1 pl-2 text-lg' value={selectedTeam} onChange={onSelectedTeamChange}>
-                <option value="1">Team 1</option>
-                <option value="2">Team 2</option>
-                <option value="3">Team 3</option>
-                <option value="4">Team 4</option>
-        </select>
+        <Select
+          className="py-1 pl-2 text-lg"
+          options={options}
+          placeholder="Select Team"
+          onChange={(e) => {
+            if (e) {
+              setTeamName(e.value);
+            }
+          }}
+        />
+
         <button className='inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700' type="submit">Submit</button>
     </form>
   )
