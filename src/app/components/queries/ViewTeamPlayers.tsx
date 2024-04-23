@@ -14,18 +14,18 @@ const options = Object.keys(nicknameToIdMap).map((key) => ({
 
 const ViewTeamPlayersForm = () => {
     const { viewPlayersFromTeam } = SupabaseService();
-    const { addItem } = SupabaseService();
-    const [teamName, setTeamName] = useState('1'); // ['Team 1', 'Team 2', 'Team 3', 'Team 4']
+    const [teamName, setTeamName] = useState('1'); 
     const teamID = nicknameToIdMap[teamName];
 
     const onSubmitTeam = (e : FormEvent) => {
         e.preventDefault();
         console.log(`Selected Team: ${teamName}`)
         // query to get all players on a team
-        viewPlayersFromTeam(teamID);
+        const table = viewPlayersFromTeam(teamID);
         // toast
         toast.success(`Viewing all players on Team ${teamName}`);
-        return;
+        // redirect to ./database/team/[teamID], passing in the table
+        return window.location.href = `/database/team/${teamID}`;
     };
 
   return (

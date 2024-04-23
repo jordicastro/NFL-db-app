@@ -31,20 +31,21 @@ const SupabaseService = () => {
     return data;
   };
 
-  const viewPlayersFromTeam = async (teamId: number) => {
+  const viewPlayersFromTeam = async (teamID: number) => {
     const { data, error } = await supabase
-      .from("Player")
+      .from("player")
       .select("*")
-      .eq("teamId", teamId);
+      .eq("teamID", teamID);
 
     if (error) {
       throw new Error(error.message);
     }
+    console.log(`[supabaseService] Successfully fetched players from team ${teamID}`);
 
     return data;
   };
 
-  return { getTable, addItem };
+  return { getTable, addItem, viewPlayersFromTeam };
 };
 
 export default SupabaseService;

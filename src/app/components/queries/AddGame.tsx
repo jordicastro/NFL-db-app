@@ -28,6 +28,7 @@ const AddGameForm = () => {
     console.log(`Away Game Name: ${awayTeamName}`);
     const awayGameID = nicknameToIdMap[awayTeamName];
     const homeGameID = nicknameToIdMap[homeTeamName];
+
     const newGame =
       {
         awayTeamId: awayGameID,
@@ -36,9 +37,10 @@ const AddGameForm = () => {
         homeTeamScore: parseInt(homeTeamScore),
         date: date,
       };
+
     console.log(`Game: ${newGame?.date}`);
     addItem("game", newGame as Game)
-    toast.success(`Game ${newGame} added!`);
+    toast.success(`Game added!`);
     // return redirect to ./database/game
     // return (window.location.href = "/database/game");
   };
