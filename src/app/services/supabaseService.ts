@@ -33,9 +33,23 @@ const SupabaseService = () => {
 
   const viewPlayersFromTeam = async (teamId: number) => {
     const { data, error } = await supabase
-      .from("Player")
+      .from("player")
       .select("*")
       .eq("teamId", teamId);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
+  };
+
+  const viewGamesFromTeam = async (teamId: number, gameId: number) => {
+    const { data, error } = await supabase
+      .from("game")
+      .select("*")
+      .eq("teamId", teamId)
+      .eq("gameId", gameId);
 
     if (error) {
       throw new Error(error.message);
