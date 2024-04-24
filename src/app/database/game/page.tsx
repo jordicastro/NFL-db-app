@@ -15,10 +15,10 @@ const Games = () => {
       setGames(games);
     };
     fetchGames();
-  }, [games]);
+  }, []);
 
   return (
-    <main>
+    <main className="flex justify-center mt-5">
       <Table contents={games}></Table>
     </main>
   );

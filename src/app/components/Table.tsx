@@ -10,7 +10,7 @@ interface TableProps {
 }
 
 const Table = ({ contents }: TableProps) => {
-  const [header, setHeader] = useState<string>("ERROR");
+  const [header, setHeader] = useState<string>("LOADING...");
 
   const getHeader = (contents: Game[] | Player[] | Team[]): string => {
     if ((contents as Game[])[0]) {
@@ -20,7 +20,7 @@ const Table = ({ contents }: TableProps) => {
     } else if ((contents as Team[])[0]) {
       return "Team";
     }
-    return "Unable to load proper table"; // Default case
+    return ""; // Default case
   };
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Table = ({ contents }: TableProps) => {
         {header}
       </caption>
       <thead className="border-stone-800 border">
-        <tr>
+        <tr className="border-stone-800 border">
           {contents.length > 0 &&
             Object.keys(contents[0]).map((key) => (
               <th className="pr-4" key={key}>
