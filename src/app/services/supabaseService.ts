@@ -18,20 +18,21 @@ const SupabaseService = () => {
     if (error) {
       throw new Error(error.message);
     }
-    console.log("Successfully fetched table contents");
+    console.log("[SUPABASE_SERVICE] Successfully fetched table contents");
     return data;
   };
+
   const addItem = async (tableName: TableNames, item: Game | Player | Team) => {
     const { data, error } = await supabase.from(tableName).insert([item]);
 
     if (error) {
       throw new Error(error.message);
     }
-    console.log("[supabaseService] Successfully added item");
+    console.log("[SUPABASE_SERVICE] Successfully added item");
     return data;
   };
 
-  const viewPlayersFromTeam = async (teamID: number) => {
+  const viewPlayersByTeam = async (teamID: number) => {
     const { data, error } = await supabase
       .from("player")
       .select("*")
@@ -41,13 +42,68 @@ const SupabaseService = () => {
       throw new Error(error.message);
     }
     console.log(
-      `[supabaseService] Successfully fetched players from team ${teamID}`
+      `[SUPABASE_SERVICE] Successfully fetched players from team ${teamID}`
     );
 
     return data;
   };
 
-  return { getTable, addItem, viewPlayersFromTeam };
+  const viewPlayersByPosition = async (position: string) => {
+    const { data, error } = await supabase
+      .from("player")
+      .select("*")
+      .eq("position", position);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+    console.log(
+      `[SUPABASE_SERVICE] Successfully fetched players from with position ${position}`
+    );
+
+    return data;
+  };
+
+  const viewTeamsByConference = async (conference: string) => {
+    const { data, error } = await supabase
+      .from("team")
+      .select("*")
+      .eq("conference", conference);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+    console.log(
+      `[SUPABASE_SERVICE] Successfully fetched teams from conference ${conference}`
+    );
+
+    return data;
+  };
+
+  const viewGamesByTeam = async (teamID: number) => {
+    // TODO
+    const { data, error } = await supabase
+      .from("game")
+      .select("*")
+      .eq("teamID", teamID);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+    console.log(
+      `[SUPABASE_SERVICE] Successfully fetched games from team ${teamID}`
+    );
+
+    return data;
+  };
+
+  return {
+    getTable,
+    addItem,
+    viewPlayersByTeam,
+    viewPlayersByPosition,
+    viewTeamsByConference,
+  };
 };
 
 export default SupabaseService;
