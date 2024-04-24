@@ -47,7 +47,21 @@ const SupabaseService = () => {
     return data;
   };
 
-  return { getTable, addItem, viewPlayersFromTeam };
+  const viewPlayersFromPosition = async (position: string) => {
+    const { data, error } = await supabase
+      .from("player")
+      .select("*")
+      .eq("position", position);
+    
+    if (error) {
+      throw new Error(error.message);
+    }
+    console.log(
+      `[supabaseService] Successfully fetched players from position ${position}`
+    );
+  }
+
+  return { getTable, addItem, viewPlayersFromTeam, viewPlayersFromPosition };
 };
 
 export default SupabaseService;

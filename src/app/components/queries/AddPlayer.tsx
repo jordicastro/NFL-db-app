@@ -4,25 +4,10 @@ import { toast } from 'react-toastify'
 import { Player } from '@/app/types/Player'
 import Select from "react-select";
 import {nicknameToIdMap} from "@/app/util/TeamMap"
-import SupabaseService from "@/app/services/supabaseService";;
+import SupabaseService from "@/app/services/supabaseService";
+import positionOptions from '@/app/util/PositionMap';
 
-const positionOptions = [
-  { value: 'QB', label: 'Quarterback' },
-  { value: 'OL', label: 'Offensive Line' },
-  { value: 'RB', label: 'Running Back' },
-  { value: 'FB', label: 'Fullback'},
-  { value: 'TE', label: 'Tight End' },
-  { value: 'WR', label: 'Wide Receiver' },
-  { value: 'DL', label: 'Defensive Line' },
-  { value: 'LB', label: 'Linebacker' },
-  { value: 'CB', label: 'Cornerback' },
-  { value: 'S', label: 'Safety' },
-  { value: 'K', label: 'Kicker' },
-  { value: 'P', label: 'Punter' },
-  { value: 'KR', label: 'Kick Returner' },
-  { value: 'PR', label: 'Punt Returner' },
-  { value: 'LS', label: 'Long Snapper' },
-];
+
 
 const teamOptions = Object.keys(nicknameToIdMap).map((key) => ({
   value: key,

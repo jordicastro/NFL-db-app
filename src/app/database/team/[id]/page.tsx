@@ -6,16 +6,16 @@ import Table from "@/app/components/Table"
 import {idToNicknameMap} from '@/app/util/TeamMap';
 
 // idea: either make query using url params [teamID] or pass in teamID as prop using Next.js router
-const TeamPage = ({params} : {params: {id : string}}) => {
+const TeamsPage = ({params} : {params: {id : string}}) => {
   const {viewPlayersFromTeam} = SupabaseService();
-  const [team, setTeam] = useState<Team[]>([]);
+  const [teams, setTeams] = useState<Team[]>([]);
   const teamID: number = parseInt(params.id);
   const teamName = idToNicknameMap[teamID];
   useEffect( () => {
 
     const fetchTeam = async () => {
-      const team: any = await viewPlayersFromTeam(teamID);
-      setTeam(team);
+      const teams: any = await viewPlayersFromTeam(teamID);
+      setTeams(teams);
     }
     fetchTeam();
   })
@@ -24,9 +24,9 @@ const TeamPage = ({params} : {params: {id : string}}) => {
   
   return (
     <main className="flex justify-center mt-5">
-        <Table contents={team} title={teamName}></Table>
+        <Table contents={teams} title={teamName}></Table>
     </main>
   );
 }
 
-export default TeamPage
+export default TeamsPage
