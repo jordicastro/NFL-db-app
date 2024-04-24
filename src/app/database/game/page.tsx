@@ -1,11 +1,27 @@
-import React from 'react'
+"use client";
+
+import Table from "@/app/components/Table";
+import SupabaseService from "@/app/services/supabaseService";
+import { Game } from "@/app/types/Game";
+import React, { useEffect, useState } from "react";
 
 const Games = () => {
-  return (
-    <>
-        <div>displaying all Games from DB</div>
-    </>
-  )
-}
+  const [games, setGames] = useState<Game[]>([]);
+  const { getTable } = SupabaseService();
 
-export default Games
+  useEffect(() => {
+    const fetchGames = async () => {
+      const games = await getTable("game");
+      setGames(games);
+    };
+    fetchGames();
+  }, [games]);
+
+  return (
+    <main>
+      <Table contents={games}></Table>
+    </main>
+  );
+};
+
+export default Games;

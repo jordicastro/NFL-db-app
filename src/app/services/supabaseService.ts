@@ -18,7 +18,7 @@ const SupabaseService = () => {
     if (error) {
       throw new Error(error.message);
     }
-    console.log("Successfully fetched data");
+    console.log("Successfully fetched table contents");
     return data;
   };
   const addItem = async (tableName: TableNames, item: Game | Player | Team) => {
@@ -27,38 +27,27 @@ const SupabaseService = () => {
     if (error) {
       throw new Error(error.message);
     }
-    console.log("Successfully added item");
+    console.log("[supabaseService] Successfully added item");
     return data;
   };
 
-  const viewPlayersFromTeam = async (teamId: number) => {
+  const viewPlayersFromTeam = async (teamID: number) => {
     const { data, error } = await supabase
       .from("player")
       .select("*")
-      .eq("teamId", teamId);
+      .eq("teamID", teamID);
 
     if (error) {
       throw new Error(error.message);
     }
+    console.log(
+      `[supabaseService] Successfully fetched players from team ${teamID}`
+    );
 
     return data;
   };
 
-  const viewGamesFromTeam = async (teamId: number, gameId: number) => {
-    const { data, error } = await supabase
-      .from("game")
-      .select("*")
-      .eq("teamId", teamId)
-      .eq("gameId", gameId);
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    return data;
-  };
-
-  return { getTable, addItem };
+  return { getTable, addItem, viewPlayersFromTeam };
 };
 
 export default SupabaseService;
