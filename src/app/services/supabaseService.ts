@@ -18,7 +18,7 @@ const SupabaseService = () => {
     if (error) {
       throw new Error(error.message);
     }
-    console.log("Successfully fetched data");
+    console.log("Successfully fetched table contents");
     return data;
   };
   const addItem = async (tableName: TableNames, item: Game | Player | Team) => {
@@ -40,7 +40,9 @@ const SupabaseService = () => {
     if (error) {
       throw new Error(error.message);
     }
-    console.log(`[supabaseService] Successfully fetched players from team ${teamID}`);
+    console.log(
+      `[supabaseService] Successfully fetched players from team ${teamID}`
+    );
 
     return data;
   };

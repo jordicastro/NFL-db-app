@@ -33,5 +33,4 @@ const nicknameToIdMap: { [nickname: string]: number } = {
   "Los Angeles Chargers": 32,
 };
 
-
-export default nicknameToIdMap
+export default nicknameToIdMap;
