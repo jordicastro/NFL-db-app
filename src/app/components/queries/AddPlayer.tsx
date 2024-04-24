@@ -3,7 +3,7 @@ import { useState, FormEvent } from 'react'
 import { toast } from 'react-toastify'
 import { Player } from '@/app/types/Player'
 import Select from "react-select";
-import nicknameToIdMap from "@/app/util/TeamMap"
+import {nicknameToIdMap} from "@/app/util/TeamMap"
 import SupabaseService from "@/app/services/supabaseService";;
 
 const positionOptions = [

@@ -1,26 +1,32 @@
-import React from 'react'
+"use client";
+import React, { useEffect, useState } from 'react'
 import SupabaseService from "@/app/services/supabaseService"
+import { Team } from "@/app/types/Team"
+import Table from "@/app/components/Table"
+import {idToNicknameMap} from '@/app/util/TeamMap';
 
 // idea: either make query using url params [teamID] or pass in teamID as prop using Next.js router
 const TeamPage = ({params} : {params: {id : string}}) => {
   const {viewPlayersFromTeam} = SupabaseService();
-  const teamID = params.id;
-  // query to get all players on a team with url param teamID
-  const table = viewPlayersFromTeam(parseInt(teamID));
-  // turn promise type into array
+  const [team, setTeam] = useState<Team[]>([]);
+  const teamID: number = parseInt(params.id);
+  const teamName = idToNicknameMap[teamID];
+  useEffect( () => {
+
+    const fetchTeam = async () => {
+      const team: any = await viewPlayersFromTeam(teamID);
+      setTeam(team);
+    }
+    fetchTeam();
+  })
+    
+    
   
-  console.log(`table: ${table}`);
   return (
-    <>
-        <h1>Team</h1>
-        <p>Team ID: {params.id}</p>
-        <div>
-            <h2>Players</h2>
-            <ul>
-            </ul>
-        </div>
-    </>
-  )
+    <main className="flex justify-center mt-5">
+        <Table contents={team} title={teamName}></Table>
+    </main>
+  );
 }
 
 export default TeamPage
