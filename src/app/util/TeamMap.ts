@@ -33,4 +33,40 @@ const nicknameToIdMap: { [nickname: string]: number } = {
   "Los Angeles Chargers": 32,
 };
 
-export default nicknameToIdMap;
+const idToNicknameMap: { [id: number]: string } = {
+  1: "Dallas Cowboys",
+  2: "New York Giants",
+  3: "Philadelphia Eagles",
+  4: "Washington Football Team",
+  5: "Chicago Bears",
+  6: "Detroit Lions",
+  7: "Green Bay Packers",
+  8: "Minnesota Vikings",
+  9: "Atlanta Falcons",
+  10: "Carolina Panthers",
+  11: "New Orleans Saints",
+  12: "Tampa Bay Buccaneers",
+  13: "Arizona Cardinals",
+  14: "Los Angeles Rams",
+  15: "San Francisco 49ers",
+  16: "Seattle Seahawks",
+  17: "Kansas City Chiefs",
+  18: "Baltimore Ravens",
+  19: "Cincinnati Bengals",
+  20: "Cleveland Browns",
+  21: "Pittsburgh Steelers",
+  22: "Buffalo Bills",
+  23: "Miami Dolphins",
+  24: "New England Patriots",
+  25: "New York Jets",
+  26: "Houston Texans",
+  27: "Indianapolis Colts",
+  28: "Jacksonville Jaguars",
+  29: "Tennessee Titans",
+  30: "Denver Broncos",
+  31: "Las Vegas Raiders",
+  32: "Los Angeles Chargers",
+};
+
+
+export {nicknameToIdMap, idToNicknameMap};

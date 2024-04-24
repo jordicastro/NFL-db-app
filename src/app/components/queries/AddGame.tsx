@@ -4,7 +4,7 @@ import React from "react";
 import { useState, FormEvent } from "react";
 import { toast } from "react-toastify";
 import { Game } from "@/app/types/Game";
-import nicknameToIdMap from "@/app/util/TeamMap";
+import { nicknameToIdMap } from "@/app/util/TeamMap";
 // import { useRouter } from 'next/router'
 
 

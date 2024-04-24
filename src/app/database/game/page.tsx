@@ -1,5 +1,4 @@
 "use client";
-
 import Table from "@/app/components/Table";
 import SupabaseService from "@/app/services/supabaseService";
 import { Game } from "@/app/types/Game";
@@ -19,7 +18,7 @@ const Games = () => {
 
   return (
     <main className="flex justify-center mt-5">
-      <Table contents={games}></Table>
+      <Table contents={games} title="Games"></Table>
     </main>
   );
 };
