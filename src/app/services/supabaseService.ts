@@ -3,7 +3,6 @@ import { Game } from "../types/Game";
 import { Player } from "../types/Player";
 import { Team } from "../types/Team";
 
-//
 const SUPABASE_URL = "https://wjaeqzloacpfephrdkke.supabase.co";
 const SUPABASE_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqYWVxemxvYWNwZmVwaHJka2tlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMzNzU1NTAsImV4cCI6MjAyODk1MTU1MH0.cBnwyiYEouqTt11sL27xebGk4Ucm7HsB_3odBmEUzPQ";
@@ -12,6 +11,9 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 type TableNames = "game" | "player" | "team";
 
 const SupabaseService = () => {
+  /**
+   * Retrieves all rows from a table
+   */
   const getTable = async (tableName: TableNames) => {
     const { data, error } = await supabase.from(tableName).select("*");
 
@@ -65,9 +67,11 @@ const SupabaseService = () => {
   };
 
   const viewTeamsByConference = async (conference: string) => {
+    // todo
     const { data, error } = await supabase
       .from("team")
-      .select("*")
+      .select("teamid, nickname, conference")
+      .order("conference", { ascending: true })
       .eq("conference", conference);
 
     if (error) {
@@ -92,6 +96,23 @@ const SupabaseService = () => {
     }
     console.log(
       `[SUPABASE_SERVICE] Successfully fetched games from team ${teamID}`
+    );
+
+    return data;
+  };
+
+  const viewGamesByDate = async (date: Date) => {
+    // TODO
+    const { data, error } = await supabase
+      .from("game")
+      .select("*")
+      .eq("date", date);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+    console.log(
+      `[SUPABASE_SERVICE] Successfully fetched games from date ${date}`
     );
 
     return data;
