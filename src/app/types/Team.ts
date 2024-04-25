@@ -4,4 +4,5 @@ export interface Team {
   conference: string;
   division: string;
   nickname: string;
+  wins?: number;
 }
