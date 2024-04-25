@@ -5,14 +5,14 @@ import { Player } from "@/app/types/Player";
 import React, { useEffect, useState } from "react";
 
 const PlayersPage = ({params} : {params : {id: string}}) => {
-    const {viewPlayersFromPosition} = SupabaseService();
+    const {viewPlayersByPosition} = SupabaseService();
     const [players, setPlayers] = useState<Player[]>([]);
     const position: string = params.id;
 
     useEffect( () => {
 
         const fetchPlayers = async () => {
-            const players: any = await viewPlayersFromPosition(position);
+            const players: any = await viewPlayersByPosition(position);
             setPlayers(players);
         }
         fetchPlayers();
