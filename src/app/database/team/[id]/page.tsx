@@ -7,18 +7,18 @@ import {idToNicknameMap} from '@/app/util/TeamMap';
 
 // idea: either make query using url params [teamID] or pass in teamID as prop using Next.js router
 const TeamsPage = ({params} : {params: {id : string}}) => {
-  const {viewPlayersFromTeam} = SupabaseService();
+  const {viewPlayersByTeam} = SupabaseService();
   const [teams, setTeams] = useState<Team[]>([]);
   const teamID: number = parseInt(params.id);
   const teamName = idToNicknameMap[teamID];
   useEffect( () => {
 
     const fetchTeam = async () => {
-      const teams: any = await viewPlayersFromTeam(teamID);
+      const teams: any = await viewPlayersByTeam(teamID);
       setTeams(teams);
     }
     fetchTeam();
-  })
+  }, []);
     
     
   
