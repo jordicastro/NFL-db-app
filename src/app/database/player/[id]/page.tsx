@@ -17,7 +17,7 @@ const PlayersPage = ({params} : {params : {id: string}}) => {
         }
         fetchPlayers();
         console.log(players);
-    }, [])
+    }, []);
     return (
         <main className="flex justify-center mt-5">
             <Table contents={players} title={"Players"}></Table>

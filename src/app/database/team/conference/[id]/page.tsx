@@ -23,7 +23,7 @@ const ConferencePage = ({params}: {params: {id: string}}) => {
 
   return (
     <main className="flex justify-center mt-5">
-        <Table contents={teams} title={params.id}></Table>
+        <Table contents={teams} title={params.id + " Teams"}></Table>
     </main>
   )
 }

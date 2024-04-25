@@ -68,5 +68,39 @@ const idToNicknameMap: { [id: number]: string } = {
   32: "Los Angeles Chargers",
 };
 
+const nicknameToAbbrMap: { [nickname: string]: string } = {
+  "Dallas Cowboys": "DAL",
+  "New York Giants": "NYG",
+  "Philadelphia Eagles": "PHI",
+  "Washington Football Team": "WAS",
+  "Chicago Bears": "CHI",
+  "Detroit Lions": "DET",
+  "Green Bay Packers": "GB",
+  "Minnesota Vikings": "MIN",
+  "Atlanta Falcons": "ATL",
+  "Carolina Panthers": "CAR",
+  "New Orleans Saints": "NO",
+  "Tampa Bay Buccaneers": "TB",
+  "Arizona Cardinals": "ARI",
+  "Los Angeles Rams": "LAR",
+  "San Francisco 49ers": "SF",
+  "Seattle Seahawks": "SEA",
+  "Kansas City Chiefs": "KC",
+  "Baltimore Ravens": "BAL",
+  "Cincinnati Bengals": "CIN",
+  "Cleveland Browns": "CLE",
+  "Pittsburgh Steelers": "PIT",
+  "Buffalo Bills": "BUF",
+  "Miami Dolphins": "MIA",
+  "New England Patriots": "NE",
+  "New York Jets": "NYJ",
+  "Houston Texans": "HOU",
+  "Indianapolis Colts": "IND",
+  "Jacksonville Jaguars": "JAX",
+  "Tennessee Titans": "TEN",
+  "Denver Broncos": "DEN",
+  "Las Vegas Raiders": "LV",
+  "Los Angeles Chargers": "LAC",
+};
 
-export {nicknameToIdMap, idToNicknameMap};
+export {nicknameToIdMap, idToNicknameMap, nicknameToAbbrMap};

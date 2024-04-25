@@ -12,7 +12,7 @@ const ViewPlayersPositionForm = () => {
     const onSubmitPlayerPosition = (e: FormEvent) => {
         e.preventDefault();
         console.log(`Position: ${selectedPosition}`);
-        // query to view players from position
+        
         return window.location.href = `/database/player/${selectedPosition}`;
     }
 
