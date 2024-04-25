@@ -35,7 +35,7 @@ const Database = () => {
     fetchPlayers();
     fetchTeams();
 
-  })
+  },[])
 
   return (
     <>
