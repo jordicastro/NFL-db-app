@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, FormEvent } from 'react'
 import { toast } from 'react-toastify'
 import Select from 'react-select';
-import nicknameToIdMap from '@/app/util/TeamMap'
+import { nicknameToIdMap } from '@/app/util/TeamMap'
 import SupabaseService from '@/app/services/supabaseService';
 
 
@@ -20,8 +20,6 @@ const ViewTeamPlayersForm = () => {
     const onSubmitTeam = (e : FormEvent) => {
         e.preventDefault();
         console.log(`Selected Team: ${teamName}`)
-        // query to get all players on a team
-        const table = viewPlayersFromTeam(teamID);
         // toast
         toast.success(`Viewing all players on Team ${teamName}`);
         // redirect to ./database/team/[teamID], passing in the table
