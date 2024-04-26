@@ -13,7 +13,6 @@ const options = Object.keys(nicknameToIdMap).map((key) => ({
 }));
 
 const ViewTeamPlayersForm = () => {
-    const { viewPlayersFromTeam } = SupabaseService();
     const [teamName, setTeamName] = useState('1'); 
     const teamID = nicknameToIdMap[teamName];
 

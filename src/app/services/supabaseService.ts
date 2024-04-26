@@ -89,7 +89,7 @@ const SupabaseService = () => {
     const { data, error } = await supabase
       .from("game")
       .select("*")
-      .eq("teamID", teamID);
+      .or(`homeTeamId.eq.${teamID},awayTeamId.eq.${teamID}`);
 
     if (error) {
       throw new Error(error.message);
@@ -101,7 +101,7 @@ const SupabaseService = () => {
     return data;
   };
 
-  const viewGamesByDate = async (date: Date) => {
+  const viewGamesByDate = async (date: string) => {
     // TODO
     const { data, error } = await supabase
       .from("game")
@@ -124,6 +124,8 @@ const SupabaseService = () => {
     viewPlayersByTeam,
     viewPlayersByPosition,
     viewTeamsByConference,
+    viewGamesByTeam,
+    viewGamesByDate,
   };
 };
 

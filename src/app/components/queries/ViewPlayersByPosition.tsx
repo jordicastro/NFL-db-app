@@ -7,12 +7,12 @@ import SupabaseService from '@/app/services/supabaseService';
 
 const ViewPlayersPositionForm = () => {
     const [selectedPosition, setSelectedPosition] = useState('Quarterbacks'); // ['Quaterbacks', 'Running backs', 'Wide Receivers', 'Linebackers'
-    const {viewPlayersFromPosition} = SupabaseService();
+    const {viewPlayersByPosition} = SupabaseService();
 
     const onSubmitPlayerPosition = (e: FormEvent) => {
         e.preventDefault();
         console.log(`Position: ${selectedPosition}`);
-        // query to view players from position
+        
         return window.location.href = `/database/player/${selectedPosition}`;
     }
 
