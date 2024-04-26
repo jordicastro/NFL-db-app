@@ -24,6 +24,20 @@ const SupabaseService = () => {
     return data;
   };
 
+  const getTeamTable = async (tableName: TableNames) => {
+    const { data, error } = await supabase
+    .from(tableName)
+    .select("*")
+    .order("conference", { ascending: true })
+    .order("wins", { ascending: false });
+    if (error) {
+      throw new Error(error.message);
+    }
+    console.log("[SUPABASE_SERVICE] Successfully added item");
+    return data;
+  };
+
+
   const addItem = async (tableName: TableNames, item: Game | Player | Team) => {
     const { data, error } = await supabase.from(tableName).insert([item]);
 
@@ -68,10 +82,12 @@ const SupabaseService = () => {
 
   const viewTeamsByConference = async (conference: string) => {
     // todo
+
     const { data, error } = await supabase
       .from("team")
-      .select("teamid, nickname, conference")
+      .select("teamid, nickname, conference, wins")
       .order("conference", { ascending: true })
+      .order("wins", { ascending: false })
       .eq("conference", conference);
 
     if (error) {
@@ -120,6 +136,7 @@ const SupabaseService = () => {
 
   return {
     getTable,
+    getTeamTable,
     addItem,
     viewPlayersByTeam,
     viewPlayersByPosition,

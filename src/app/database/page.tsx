@@ -13,7 +13,7 @@ const Database = () => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
 
-  const { getTable } = SupabaseService();
+  const { getTable, getTeamTable } = SupabaseService();
 
   useEffect( () => {
     const fetchGames = async () => {
@@ -27,7 +27,7 @@ const Database = () => {
     };
 
     const fetchTeams = async () => {
-      const teams = await getTable("team");
+      const teams = await getTeamTable("team");
       setTeams(teams);
     };
 

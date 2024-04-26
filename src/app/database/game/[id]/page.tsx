@@ -5,6 +5,7 @@ import { Game } from '@/app/types/Game'
 import Table from '@/app/components/Table'
 import { idToNicknameMap } from '@/app/util/TeamMap';
 
+
 const GamesPage = ({params}: {params : {id: string}}) => {
   const { viewGamesByTeam } = SupabaseService();
   const [games, setGames] = useState<Game[]>([]);
