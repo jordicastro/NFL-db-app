@@ -7,9 +7,10 @@ import { Team } from "../types/Team";
 
 interface TableProps {
   contents: Game[] | Player[] | Team[];
+  title: string;
 }
 
-const Table = ({ contents }: TableProps) => {
+const Table = ({ contents, title }: TableProps) => {
   const [header, setHeader] = useState<string>("LOADING...");
 
   const getHeader = (contents: Game[] | Player[] | Team[]): string => {
@@ -30,7 +31,7 @@ const Table = ({ contents }: TableProps) => {
   return (
     <table className="table-auto flex-col border-stone-800 border">
       <caption className="justify-start self-start font-bold text-2xl table-caption">
-        {header}
+        {title}
       </caption>
       <thead className="border-stone-800 border">
         <tr className="border-stone-800 border">

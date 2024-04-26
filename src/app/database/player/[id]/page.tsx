@@ -1,12 +1,27 @@
-import React from 'react'
+"use client";
+import Table from "@/app/components/Table";
+import SupabaseService from "@/app/services/supabaseService";
+import { Player } from "@/app/types/Player";
+import React, { useEffect, useState } from "react";
 
-const Player = ({params} : {params : {id: string}}) => {
-  return (
-    <>
-        <h1>Player</h1>
-        <p>Player ID: {params.id}</p>
-    </>
-  )
+const PlayersPage = ({params} : {params : {id: string}}) => {
+    const {viewPlayersByPosition} = SupabaseService();
+    const [players, setPlayers] = useState<Player[]>([]);
+    const position: string = params.id;
+
+    useEffect( () => {
+
+        const fetchPlayers = async () => {
+            const players: any = await viewPlayersByPosition(position);
+            setPlayers(players);
+        }
+        fetchPlayers();
+    }, []);
+    return (
+        <main className="flex justify-center mt-5">
+            <Table contents={players} title={"Players"}></Table>
+        </main>
+    );
 }
 
-export default Player
+export default PlayersPage

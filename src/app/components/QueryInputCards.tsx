@@ -5,7 +5,7 @@ import Card from "./Card";
 import AddGameForm from "./queries/AddGame";
 import AddPlayerForm from "./queries/AddPlayer";
 import ViewTeamPlayersForm from "./queries/ViewTeamPlayers";
-import ViewPlayersPositionForm from "./queries/ViewPlayersPosition";
+import ViewPlayersPositionForm from "./queries/ViewPlayersByPosition";
 import ViewConferenceTeamsForm from "./queries/ViewConferenceTeams";
 import ViewGamesByTeamForm from "./queries/ViewGamesByTeam";
 import ViewGameByDate from "./queries/ViewGameByDate";
