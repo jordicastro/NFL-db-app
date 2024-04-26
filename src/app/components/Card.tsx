@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 interface CardProps {
   children: React.ReactNode;
@@ -7,8 +7,10 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ children, className }) => {
   return (
-    <div className='{`${className} bg-gray-100 p-6 rounded-lg shadow-md `}`'>{children}</div>
+    <div className="{`${className} bg-gray-100 p-6 rounded-lg shadow-md flex-col`}`">
+      {children}
+    </div>
   );
-}
+};
 
-export default Card
+export default Card;

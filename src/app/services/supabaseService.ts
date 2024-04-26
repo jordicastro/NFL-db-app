@@ -71,8 +71,7 @@ const SupabaseService = () => {
     const { data, error } = await supabase
       .from("team")
       .select("teamid, nickname, conference")
-      .order("conference", { ascending: true })
-      .eq("conference", conference);
+      .order("conference", { ascending: true });
 
     if (error) {
       throw new Error(error.message);
