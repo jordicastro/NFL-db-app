@@ -101,7 +101,7 @@ const SupabaseService = () => {
     return data;
   };
 
-  const viewGamesByDate = async (date: Date) => {
+  const viewGamesByDate = async (date: string) => {
     // TODO
     const { data, error } = await supabase
       .from("game")
@@ -125,6 +125,7 @@ const SupabaseService = () => {
     viewPlayersByPosition,
     viewTeamsByConference,
     viewGamesByTeam,
+    viewGamesByDate,
   };
 };
 

@@ -16,7 +16,6 @@ const PlayersPage = ({params} : {params : {id: string}}) => {
             setPlayers(players);
         }
         fetchPlayers();
-        console.log(players);
     }, []);
     return (
         <main className="flex justify-center mt-5">
