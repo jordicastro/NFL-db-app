@@ -9,6 +9,22 @@
   --color-tertiary: #00f;
 }
 
-.test {
-  @apply text-lg text-yellow-400;
+input {
+  border-radius: 0.25rem;
+}
+
+button {
+  @apply mt-4;
+}
+
+h3 {
+  @apply mb-2;
+}
+
+thead {
+  @apply bg-indigo-700 text-white;
+}
+
+td {
+  @apply hover:bg-orange-400 hover:text-white transition-all;
 }

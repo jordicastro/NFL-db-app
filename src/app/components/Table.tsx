@@ -8,7 +8,7 @@ import { Team } from "../types/Team";
 interface TableProps {
   contents: Game[] | Player[] | Team[] | any[];
   title: string;
-  extraColumn?: boolean;
+  extraColumn?: string;
 }
 
 const Table = ({ contents, title, extraColumn }: TableProps) => {
@@ -35,7 +35,7 @@ const Table = ({ contents, title, extraColumn }: TableProps) => {
                 )}
               </>
             ))}
-          {extraColumn && <th className="pr-4">Winner</th>}
+          {extraColumn && <th className="pr-4">{extraColumn}</th>}
         </tr>
       </thead>
       <tbody>
@@ -56,7 +56,7 @@ const Table = ({ contents, title, extraColumn }: TableProps) => {
                 )}
               </>
             ))}
-            {extraColumn && (
+            {extraColumn === "Winner ID" && (
               <td className="pr-4">
                 {content.awayTeamScore > content.homeTeamScore
                   ? content.awayTeamId
