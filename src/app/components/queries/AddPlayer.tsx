@@ -5,9 +5,6 @@ import { Player } from "@/app/types/Player";
 import Select from "react-select";
 import { nicknameToIdMap } from "@/app/util/TeamMap";
 import SupabaseService from "@/app/services/supabaseService";
-import positionOptions from "@/app/util/PositionMap";
-import nicknameToIdMap from "@/app/util/TeamMap";
-import SupabaseService from "@/app/services/supabaseService";
 
 const positionOptions = [
   { value: "QB", label: "Quarterback" },
