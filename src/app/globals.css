@@ -12,3 +12,11 @@
 input {
   border-radius: 0.25rem;
 }
+
+button {
+  @apply mt-4;
+}
+
+h3 {
+  @apply mb-2;
+}
