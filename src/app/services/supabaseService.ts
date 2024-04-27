@@ -68,11 +68,12 @@ const SupabaseService = () => {
   };
 
   const viewTeamsByConference = async (conference: string) => {
-    // todo
     const { data, error } = await supabase
       .from("team")
       .select("*")
-      .order("conference", { ascending: true });
+      .order("conference", { ascending: true })
+      .order("wins", { ascending: false })
+      .order("conferencewins", { ascending: false });
 
     if (error) {
       throw new Error(error.message);
@@ -85,7 +86,6 @@ const SupabaseService = () => {
   };
 
   const viewGamesByTeam = async (teamID: number) => {
-    // TODO
     const { data, error } = await supabase
       .from("game")
       .select(

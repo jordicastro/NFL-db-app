@@ -21,7 +21,11 @@ const GamesPage = ({ params }: { params: { id: string } }) => {
 
   return (
     <main className="flex justify-center mt-5">
-      <Table contents={games} extraColumn title={title + " Games"}></Table>
+      <Table
+        contents={games}
+        extraColumn="Winner ID"
+        title={title + " Games"}
+      ></Table>
     </main>
   );
 };

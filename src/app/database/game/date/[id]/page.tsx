@@ -20,7 +20,11 @@ const DatePage = ({ params }: { params: { id: string } }) => {
 
   return (
     <main className="flex justify-center mt-5">
-      <Table contents={games} extraColumn title={`Games on ${date}`}></Table>
+      <Table
+        contents={games}
+        extraColumn="Winner ID"
+        title={`Games on ${date}`}
+      ></Table>
     </main>
   );
 };

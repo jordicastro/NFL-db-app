@@ -9,6 +9,6 @@
   --color-tertiary: #00f;
 }
 
-.test {
-  @apply text-lg text-yellow-400;
+input {
+  border-radius: 0.25rem;
 }

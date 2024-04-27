@@ -1,31 +1,29 @@
 "use client";
-import React from 'react';
-import { useEffect, useState } from 'react';
-import SupabaseService from '@/app/services/supabaseService';
-import { Team } from '@/app/types/Team';
-import Table from '@/app/components/Table';
+import React from "react";
+import { useEffect, useState } from "react";
+import SupabaseService from "@/app/services/supabaseService";
+import { Team } from "@/app/types/Team";
+import Table from "@/app/components/Table";
 
-const ConferencePage = ({params}: {params: {id: string}}) => {
-    const {viewTeamsByConference} = SupabaseService();
-    const [teams, setTeams] = useState<Team[]>([]);
-    const conference: string = params.id;
+const ConferencePage = ({ params }: { params: { id: string } }) => {
+  const { viewTeamsByConference } = SupabaseService();
+  const [teams, setTeams] = useState<Team[]>([]);
+  const conference: string = params.id;
 
-    useEffect( () => {
+  useEffect(() => {
+    const fetchTeams = async () => {
+      const teams: any = await viewTeamsByConference(conference);
+      setTeams(teams);
+    };
 
-        const fetchTeams = async () => {
-            const teams: any = await viewTeamsByConference(conference);
-            setTeams(teams);
-        };
-
-        fetchTeams();
-    }, []);
-
+    fetchTeams();
+  }, []);
 
   return (
     <main className="flex justify-center mt-5">
-        <Table contents={teams} title={params.id + " Teams"}></Table>
+      <Table contents={teams} title={params.id + " Teams"}></Table>
     </main>
-  )
-}
+  );
+};
 
-export default ConferencePage
+export default ConferencePage;
