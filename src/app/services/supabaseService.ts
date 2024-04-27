@@ -88,8 +88,12 @@ const SupabaseService = () => {
     // TODO
     const { data, error } = await supabase
       .from("game")
-      .select("*")
-      .eq("teamID", teamID)
+      .select(
+        `*,
+      awayTeam:awayTeamId (nickname, location),
+      homeTeam:homeTeamId (nickname, location)
+      `
+      )
       .or(`homeTeamId.eq.${teamID},awayTeamId.eq.${teamID}`);
 
     if (error) {
@@ -103,7 +107,6 @@ const SupabaseService = () => {
   };
 
   const viewGamesByDate = async (date: string) => {
-    // TODO
     const { data, error } = await supabase
       .from("game")
       .select(
@@ -119,8 +122,6 @@ const SupabaseService = () => {
     console.log(
       `[SUPABASE_SERVICE] Successfully fetched games from date ${date}`
     );
-
-    console.log(data);
 
     return data;
   };
