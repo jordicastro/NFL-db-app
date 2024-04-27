@@ -8,9 +8,10 @@ import { Team } from "../types/Team";
 interface TableProps {
   contents: Game[] | Player[] | Team[] | any[];
   title: string;
+  extraColumn?: boolean;
 }
 
-const Table = ({ contents, title }: TableProps) => {
+const Table = ({ contents, title, extraColumn }: TableProps) => {
   return (
     <table className="table-auto flex-col border-stone-800 border bg-slate-200">
       <caption className="justify-start self-start font-bold text-2xl table-caption">
@@ -34,6 +35,7 @@ const Table = ({ contents, title }: TableProps) => {
                 )}
               </>
             ))}
+          {extraColumn && <th className="pr-4">Winner</th>}
         </tr>
       </thead>
       <tbody>
@@ -54,6 +56,13 @@ const Table = ({ contents, title }: TableProps) => {
                 )}
               </>
             ))}
+            {extraColumn && (
+              <td className="pr-4">
+                {content.awayTeamScore > content.homeTeamScore
+                  ? content.awayTeamId
+                  : content.homeTeamId}
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
