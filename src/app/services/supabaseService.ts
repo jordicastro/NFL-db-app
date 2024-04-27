@@ -16,6 +16,7 @@ const SupabaseService = () => {
    */
   const getTable = async (tableName: TableNames) => {
     const { data, error } = await supabase.from(tableName).select("*");
+    console.log(data);
 
     if (error) {
       throw new Error(error.message);
@@ -81,14 +82,12 @@ const SupabaseService = () => {
   };
 
   const viewTeamsByConference = async (conference: string) => {
-    // todo
-
     const { data, error } = await supabase
       .from("team")
-      .select("teamid, nickname, conference, wins")
+      .select("*")
       .order("conference", { ascending: true })
       .order("wins", { ascending: false })
-      .eq("conference", conference);
+      .order("conferencewins", { ascending: false });
 
     if (error) {
       throw new Error(error.message);
@@ -101,10 +100,14 @@ const SupabaseService = () => {
   };
 
   const viewGamesByTeam = async (teamID: number) => {
-    // TODO
     const { data, error } = await supabase
       .from("game")
-      .select("*")
+      .select(
+        `*,
+      awayTeam:awayTeamId (nickname, location),
+      homeTeam:homeTeamId (nickname, location)
+      `
+      )
       .or(`homeTeamId.eq.${teamID},awayTeamId.eq.${teamID}`);
 
     if (error) {
@@ -118,10 +121,13 @@ const SupabaseService = () => {
   };
 
   const viewGamesByDate = async (date: string) => {
-    // TODO
     const { data, error } = await supabase
       .from("game")
-      .select("*")
+      .select(
+        `awayTeamId, homeTeamId, awayTeamScore, homeTeamScore, date, 
+        awayTeam:awayTeamId (nickname, location),
+        homeTeam:homeTeamId (nickname, location)`
+      )
       .eq("date", date);
 
     if (error) {

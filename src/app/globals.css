@@ -1,10 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'react-toastify/dist/ReactToastify.css';
+@import "react-toastify/dist/ReactToastify.css";
 
 :root {
   --color-primary: #f00;
   --color-secondary: #0f0;
   --color-tertiary: #00f;
+}
+
+input {
+  border-radius: 0.25rem;
+}
+
+button {
+  @apply mt-4;
+}
+
+h3 {
+  @apply mb-2;
+}
+
+thead {
+  @apply bg-indigo-700 text-white;
+}
+
+td {
+  @apply hover:bg-orange-400 hover:text-white transition-all;
 }
